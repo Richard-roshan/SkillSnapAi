@@ -1,4 +1,4 @@
-name: Phase 7 — Live GitHub Pages CI/CD & E2E Pipeline
+name: "Phase 7 — Live GitHub Pages CI/CD Pipeline"
 
 on:
   push:
@@ -13,27 +13,27 @@ permissions:
   id-token: write
 
 env:
-  BASE_URL: https://Richard-roshan.github.io/SkillSnapAi/
+  BASE_URL: "https://Richard-roshan.github.io/SkillSnapAi/"
 
 jobs:
   deploy-and-test:
-    name: Phase 7 CI/CD Deployment & Live E2E Pipeline
+    name: "Phase 7 CI/CD Deployment & Live E2E Pipeline"
     runs-on: ubuntu-latest
 
     steps:
-      - name: Stage 1: Repository Checkout
+      - name: "Stage 1: Repository Checkout"
         uses: actions/checkout@v4
 
-      - name: Stage 2: Dependency Installation
+      - name: "Stage 2: Dependency Installation"
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: Install Dependencies
+      - name: "Install Dependencies"
         run: npm ci
 
-      - name: Stage 3: Build Application
+      - name: "Stage 3: Build Application"
         run: npm run build
         env:
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY || 'AIzaSyDS2V_B38FdQsT7wRdTqXgr-UdJAraZsdY' }}
@@ -41,19 +41,19 @@ jobs:
           VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID || 'skillsnap-ai-a425b' }}
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET || 'skillsnap-ai-a425b.firebasestorage.app' }}
 
-      - name: Stage 4: Static Analysis
+      - name: "Stage 4: Static Analysis"
         run: npx tsc -b
 
-      - name: Stage 5: Deploy to GitHub Pages
+      - name: "Stage 5: Deploy to GitHub Pages"
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
 
-      - name: Stage 6: Wait for Deployment Availability
+      - name: "Stage 6: Wait for Deployment Availability"
         run: sleep 15
 
-      - name: Stage 7: Deployment Verification
+      - name: "Stage 7: Deployment Verification"
         run: |
           echo "🌐 Verifying Live GitHub Pages Availability at $BASE_URL..."
           HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}\n" -L "$BASE_URL")
@@ -64,15 +64,15 @@ jobs:
           fi
           echo "✅ Live deployment verified successfully!"
 
-      - name: Stage 8: Run Live Selenium E2E Tests (400+ Test Cases)
+      - name: "Stage 8: Run Live Selenium E2E Tests (400+ Test Cases)"
         run: npm run test:selenium:live
 
-      - name: Stage 9 & 10: Generate Excel, HTML & JSON Reports
+      - name: "Stage 9 & 10: Generate Excel, HTML & JSON Reports"
         if: always()
         run: |
           echo "📑 Reports generated under 'Test Results/' directory."
 
-      - name: Stage 11: Upload Artifacts
+      - name: "Stage 11: Upload Artifacts"
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -82,7 +82,7 @@ jobs:
             reports/
           retention-days: 30
 
-      - name: Stage 12: Publish GitHub Job Summary
+      - name: "Stage 12: Publish GitHub Job Summary"
         if: always()
         run: |
           echo "# 🌐 Live GitHub Pages E2E Execution Summary" >> $GITHUB_STEP_SUMMARY
@@ -103,7 +103,7 @@ jobs:
           echo "✓ \`execution-report.html\`" >> $GITHUB_STEP_SUMMARY
           echo "✓ \`execution-results.json\`" >> $GITHUB_STEP_SUMMARY
 
-      - name: Stage 13: Store Historical Results
+      - name: "Stage 13: Store Historical Results"
         if: always()
         run: |
           echo "Historical test evidence preserved for 30 days."
