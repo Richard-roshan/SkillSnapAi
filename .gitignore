@@ -23,8 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-# Playwright Test Artifacts
+# Playwright & Selenium Test Artifacts
 playwright-report/
 test-results/
 blob-report/
+E2E_Test_Report_SkillSnapAI_*.xlsx
+appium/E2E_Test_Report_SkillSnapAI_*.xlsx
+
 

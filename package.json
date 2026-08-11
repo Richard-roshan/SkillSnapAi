@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test:appium": "npx tsx appium/runner.ts"
+    "test:appium": "npx tsx appium/runner.ts",
+    "test:selenium": "npx tsx tests/selenium/runner.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.0",
@@ -28,6 +29,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "recharts": "^3.10.1",
+    "selenium-webdriver": "^4.47.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "webdriverio": "^9.30.1",
