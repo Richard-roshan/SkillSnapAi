@@ -13,6 +13,7 @@
     "preview": "vite preview",
     "test:appium": "npx tsx appium/runner.ts",
     "test:selenium": "npx tsx tests/selenium/runner.ts",
+    "test:selenium:live": "npx tsx automation/runner.ts",
     "test:load": "npx tsx tests/load_testing/runner.ts"
   },
   "dependencies": {
