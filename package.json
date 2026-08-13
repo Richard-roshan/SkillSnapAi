@@ -14,7 +14,8 @@
     "test:appium": "npx tsx appium/runner.ts",
     "test:selenium": "npx tsx tests/selenium/runner.ts",
     "test:selenium:live": "npx tsx automation/runner.ts",
-    "test:load": "npx tsx tests/load_testing/runner.ts"
+    "test:load": "npx tsx tests/load_testing/runner.ts",
+    "test:vulnerability": "npx tsx tests/vulnerability/runner.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.0",
